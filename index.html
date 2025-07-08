@@ -1,0 +1,62 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Daily Work Log</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 20px; }
+    .lang-toggle { margin-bottom: 20px; }
+    .form-section { display: none; }
+    .form-section.active { display: block; }
+    input, textarea, select, button { width: 100%; margin-bottom: 15px; padding: 10px; font-size: 16px; }
+  </style>
+</head>
+<body>
+  <h2 id="title">SUPREME BUILDS - DAILY WORK LOG SYSTEM</h2>
+  <p id="why">WHY IT MATTERS: Help us track production, reward great performance, and make sure everyone gets credit for their hard work. Logging your day takes less than 2 minutes.</p>
+  <div class="lang-toggle">
+    <button onclick="toggleLang('en')">English</button>
+    <button onclick="toggleLang('es')">Español</button>
+  </div>
+
+  <form id="dailyForm" method="POST" action="https://hook.us1.make.com/your-n8n-webhook-url">
+    <div id="en" class="form-section active">
+      <input type="text" name="name" placeholder="Full Name" required />
+      <input type="text" name="project" placeholder="Project Name" required />
+      <input type="time" name="time_in" placeholder="Time In" required />
+      <input type="time" name="time_out" placeholder="Time Out" required />
+      <textarea name="tasks" placeholder="Tasks Completed" required></textarea>
+      <textarea name="issues" placeholder="Delays / Problems / Missing Materials"></textarea>
+      <button type="submit">Submit</button>
+    </div>
+
+    <div id="es" class="form-section">
+      <input type="text" name="name" placeholder="Nombre completo" required />
+      <input type="text" name="project" placeholder="Nombre del proyecto" required />
+      <input type="time" name="time_in" placeholder="Hora de entrada" required />
+      <input type="time" name="time_out" placeholder="Hora de salida" required />
+      <textarea name="tasks" placeholder="Tareas completadas" required></textarea>
+      <textarea name="issues" placeholder="Problemas / Demoras / Materiales faltantes"></textarea>
+      <button type="submit">Enviar</button>
+    </div>
+  </form>
+
+  <script>
+    function toggleLang(lang) {
+      document.getElementById('en').classList.remove('active');
+      document.getElementById('es').classList.remove('active');
+      document.getElementById(lang).classList.add('active');
+
+      if(lang === 'en') {
+        document.getElementById("title").innerText = "SUPREME BUILDS - DAILY WORK LOG SYSTEM";
+        document.getElementById("why").innerText = "WHY IT MATTERS: Help us track production, reward great performance, and make sure everyone gets credit for their hard work. Logging your day takes less than 2 minutes.";
+      } else {
+        document.getElementById("title").innerText = "SUPREME BUILDS - REGISTRO DIARIO DE TRABAJO";
+        document.getElementById("why").innerText = "POR QUÉ ES IMPORTANTE: Ayúdanos a rastrear la producción, recompensar el gran desempeño y asegurarnos de que todos reciban crédito por su trabajo. Registrar tu día toma menos de 2 minutos.";
+      }
+    }
+  </script>
+</body>
+</html>
